@@ -1,29 +1,62 @@
 #include "Driver.h"
 
-Driver::Driver(Motor ma_r, Motor ma_l, Motor mp_r, Motor mp_l) {
-    _ma_r = ma_r;
-    _ma_l = ma_l;
-    _mp_r = mp_r;
-    _mp_l = mp_l;
+
+Driver::Driver() {
+  
 }
 
-void Driver::Forwarding() {
-    _ma_r.Forward();
-    _ma_l.Forward();
-    _mp_r.Forward();
-    _mp_l.Forward();
+void Driver::Execute(String str) {
+  
 }
 
-void Driver::Backwarding() {
-    _ma_r.Backward();
-    _ma_l.Backward();
-    _mp_r.Backward();
-    _mp_l.Backward();
+void Driver::SetMotor_AR(uint8_t pin_enable, uint8_t pin_forward, uint8_t pin_backward) {
+  this->_ma_r.Init(pin_enable, pin_forward, pin_backward);
 }
 
-void Driver::Stopping() {
-    _ma_r.Stop();
-    _ma_l.Stop();
-    _mp_r.Stop();
-    _mp_l.Stop();
+void Driver::SetMotor_AL(uint8_t pin_enable, uint8_t pin_forward, uint8_t pin_backward) {
+  this->_ma_l.Init(pin_enable, pin_forward, pin_backward);
 }
+
+void Driver::SetMotor_PR(uint8_t pin_enable, uint8_t pin_forward, uint8_t pin_backward) {
+  this->_mp_r.Init(pin_enable, pin_forward, pin_backward);
+}
+
+void Driver::SetMotor_PL(uint8_t pin_enable, uint8_t pin_forward, uint8_t pin_backward) {
+  this->_mp_l.Init(pin_enable, pin_forward, pin_backward);
+}
+
+void Driver::Forward() {
+  this->_ma_r.Forward();
+  this->_ma_l.Forward();
+  this->_mp_r.Forward();
+  this->_mp_l.Forward();
+}
+
+void Driver::Backward() {
+  this->_ma_r.Backward();
+  this->_ma_l.Backward();
+  this->_mp_r.Backward();
+  this->_mp_l.Backward();
+}
+
+void Driver::Stop() {
+  this->_ma_r.Stop();
+  this->_ma_l.Stop();
+  this->_mp_r.Stop();
+  this->_mp_l.Stop();
+}
+
+void Driver::Right() {
+  this->_ma_l.Forward();
+  this->_ma_r.Backward();
+  this->_mp_l.Forward();
+  this->_mp_r.Backward(); 
+}
+
+void Driver::Left() {
+  this->_ma_l.Backward();
+  this->_ma_r.Forward();
+  this->_mp_l.Backward();
+  this->_mp_r.Forward(); 
+}
+
